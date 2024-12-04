@@ -26,40 +26,40 @@ class SentimentAnalysisService
     }    
 
     public function analyzeSentiment($text)
-    {
-        $positiveCount = 0;
-        $negativeCount = 0;
-        $highlightedText = '';
+{
+    $positiveCount = 0;
+    $negativeCount = 0;
+    $highlightedText = '';
     
-        // Split text into words and clean punctuation
-        $words = preg_split('/\s+/', $text); // Handles multiple spaces and newlines
-        foreach ($words as $word) {
-            $word = preg_replace('/[^\w\s]/', '', $word); // Remove punctuation
-            $lowercaseWord = strtolower($word);
+    // Split text into words while keeping punctuation separate
+    $words = preg_split('/(\s+|[^\w]+)/', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+    foreach ($words as $word) {
+        $cleanWord = preg_replace('/[^\w\s]/', '', $word); // Remove punctuation
 
-            if (isset($this->positiveWords[$lowercaseWord])) {
-                $positiveCount++;
-                $highlightedText .= '<span style="color: green;">' . htmlspecialchars($word) . '</span> ';
-            } elseif (isset($this->negativeWords[$lowercaseWord])) {
-                $negativeCount++;
-                $highlightedText .= '<span style="color: red;">' . htmlspecialchars($word) . '</span> ';
-            } else {
-                $highlightedText .= htmlspecialchars($word) . ' ';
-            }
+        if (isset($this->positiveWords[strtolower($cleanWord)])) {
+            $positiveCount++;
+            $highlightedText .= '<span style="color: green;">' . htmlspecialchars($word) . '</span> ';
+        } elseif (isset($this->negativeWords[strtolower($cleanWord)])) {
+            $negativeCount++;
+            $highlightedText .= '<span style="color: red;">' . htmlspecialchars($word) . '</span> ';
+        } else {
+            $highlightedText .= htmlspecialchars($word) . ' ';
         }
-    
-        // Sentiment score
-        $score = $positiveCount - $negativeCount;
-    
-        // Sentiment label
-        $sentiment = $score > 0 ? 'Positive' : ($score < 0 ? 'Negative' : 'Neutral');
-    
-        return [
-            'sentiment' => $sentiment,
-            'highlightedText' => $highlightedText,
-            'positiveCount' => $positiveCount,
-            'negativeCount' => $negativeCount,
-            'score' => $score,
-        ];
     }
+    
+    // Sentiment score
+    $score = $positiveCount - $negativeCount;
+
+    // Sentiment label
+    $sentiment = $score > 0 ? 'Positive' : ($score < 0 ? 'Negative' : 'Neutral');
+
+    return [
+        'sentiment' => $sentiment,
+        'highlightedText' => $highlightedText,
+        'positiveCount' => $positiveCount,
+        'negativeCount' => $negativeCount,
+        'score' => $score,
+    ];
+}
+
 }
