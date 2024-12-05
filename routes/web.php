@@ -12,6 +12,7 @@ Route::post('/analyze', [SentimentController::class, 'analyze'])->name('analyze'
 Route::get('/history', [SentimentController::class, 'history'])
     ->middleware('auth')
     ->name('history');
+Route::delete('/history/{id}', [SentimentController::class, 'destroy'])->name('history.destroy');
 
 
 Route::middleware('guest')->group(function () {

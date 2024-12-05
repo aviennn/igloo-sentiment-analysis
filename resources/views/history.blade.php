@@ -65,6 +65,11 @@
                             <td>
                                 <!-- Button to open modal with full text -->
                                 <button class="btn btn-primary view-text-btn" data-toggle="modal" data-target="#viewTextModal" data-text="{{ $item->text }}">View</button>
+                                <form action="{{ route('history.destroy', $item->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

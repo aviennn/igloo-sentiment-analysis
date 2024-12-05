@@ -101,5 +101,18 @@ class SentimentController extends Controller
         $history = SentimentHistory::where('user_id', auth()->id())->latest()->paginate(10);
         return view('history', compact('history'));
     }
+
+    public function destroy($id)
+{
+    // Find the sentiment history entry by ID
+    $history = SentimentHistory::findOrFail($id);
+
+    // Soft delete the entry
+    $history->delete();
+
+    // Redirect back with success message
+    return redirect()->route('history')->with('success', 'Sentiment history entry deleted successfully.');
+}
+
     
 }
