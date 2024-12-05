@@ -33,19 +33,28 @@ class SentimentAnalysisService
     
     // Split text into words while keeping punctuation separate
     $words = preg_split('/(\s+|[^\w]+)/', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-    foreach ($words as $word) {
-        $cleanWord = preg_replace('/[^\w\s]/', '', $word); // Remove punctuation
 
-        if (isset($this->positiveWords[strtolower($cleanWord)])) {
+foreach ($words as $word) {
+    // Clean up word to remove any leading/trailing punctuation, e.g., commas, periods, etc.
+    $cleanWord = strtolower(trim(preg_replace('/[^\w]+$/', '', preg_replace('/^[^\w]+/', '', $word))));
+
+    // Only process non-empty cleaned words
+    if (!empty($cleanWord)) {
+        if (isset($this->positiveWords[$cleanWord])) {
             $positiveCount++;
             $highlightedText .= '<span style="color: green;">' . htmlspecialchars($word) . '</span> ';
-        } elseif (isset($this->negativeWords[strtolower($cleanWord)])) {
+        } elseif (isset($this->negativeWords[$cleanWord])) {
             $negativeCount++;
             $highlightedText .= '<span style="color: red;">' . htmlspecialchars($word) . '</span> ';
         } else {
             $highlightedText .= htmlspecialchars($word) . ' ';
         }
+    } else {
+        // If the word is only punctuation, simply skip it
+        $highlightedText .= htmlspecialchars($word) . ' ';
     }
+}
+
     
     // Sentiment score
     $score = $positiveCount - $negativeCount;
@@ -60,11 +69,6 @@ class SentimentAnalysisService
         'negativeCount' => $negativeCount,
         'score' => $score,
     ];
-<<<<<<< HEAD
-}
 
-=======
->>>>>>> d01774f79536ddcee58a83a1cd057fe0abdfd6fa
 }
-
 }

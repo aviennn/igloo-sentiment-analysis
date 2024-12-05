@@ -10,6 +10,7 @@ class SentimentHistory extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'sentiment',
         'score',
         'file_name',

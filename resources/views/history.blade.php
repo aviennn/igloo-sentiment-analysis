@@ -53,7 +53,7 @@
                             <td>{{ $item->score }}</td>
                             <td>
                                 @if($item->file_name)
-                                    <a href="javascript:void(0);" data-file="{{ env('AZURE_ENDPOINT') . '/' . $item->file_path }}" class="view-file">
+                                    <a data-file="{{ env('AZURE_ENDPOINT') . '/' . $item->file_path }}" class="view-file">
                                         {{ $item->file_name }}
                                     </a>
                                 @else
@@ -78,33 +78,59 @@
         </div>
 
         <!-- Back to Home link -->
-        <p><a href="{{ route('welcome') }}">Back to Home</a></p>
+        <p><a href="{{ route('dashboard') }}">Back to Home</a></p>
 
     </div>
 
-    <!-- Modal for viewing full text -->
-    <div class="modal fade" id="viewTextModal" tabindex="-1" role="dialog" aria-labelledby="viewTextModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewTextModalLabel">Full Text</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+   <!-- Modal for viewing files -->
+<div class="modal fade" id="viewFileModal" tabindex="-1" role="dialog" aria-labelledby="viewFileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewFileModalLabel">File Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="fileContent">
+                    <!-- File content will be dynamically loaded here -->
                 </div>
-                <div class="modal-body">
-                    <p id="fullText"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal for viewing text -->
+<div class="modal fade" id="viewTextModal" tabindex="-1" role="dialog" aria-labelledby="viewTextModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewTextModalLabel">Full Text</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="fullText"></p> <!-- This will hold the full text -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <!-- SB Admin 2 Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
 
     <!-- Custom JavaScript for search functionality -->
     <script>
@@ -123,6 +149,33 @@
                 $("#fullText").text(text);
             });
         });
+
+        $(document).ready(function() {
+        // Handle file link click
+        $(".view-file").on("click", function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            var fileUrl = $(this).data("file");
+            
+            // Check the file type and display accordingly
+            var fileContent = "";
+            if (fileUrl.endsWith(".pdf")) {
+                // Embed PDF in the modal
+                fileContent = `<embed src="${fileUrl}" type="application/pdf" width="100%" height="500px">`;
+            } else if (fileUrl.endsWith(".jpg") || fileUrl.endsWith(".jpeg") || fileUrl.endsWith(".png") || fileUrl.endsWith(".gif")) {
+                // Display image
+                fileContent = `<img src="${fileUrl}" class="img-fluid" alt="File Preview">`;
+            } else {
+                // Handle other file types (e.g., plain text or unknown format)
+                fileContent = `<p>Preview not available for this file type. <a href="${fileUrl}" target="_blank">Download file</a></p>`;
+            }
+
+            // Set the content in the modal
+            $("#fileContent").html(fileContent);
+
+            // Show the modal
+            $("#viewFileModal").modal("show");
+        });
+    });
     </script>
 </body>
 </html>

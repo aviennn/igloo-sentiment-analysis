@@ -79,6 +79,7 @@ class SentimentController extends Controller
 
         // Save analysis result to the database
         SentimentHistory::create([
+            'user_id' => auth()->id(), // Add this line to associate with the logged-in user
             'sentiment' => $result['sentiment'],
             'score' => $result['score'],
             'file_name' => $fileName,
@@ -86,8 +87,8 @@ class SentimentController extends Controller
             'text' => $text,
         ]);
 
-        // Return the analysis results to the view
-        return view('welcome', [
+        // Return the analysis results as JSON
+        return response()->json([
             'sentiment' => $result['sentiment'],
             'highlightedText' => $result['highlightedText'],
             'positiveCount' => $result['positiveCount'],
@@ -95,11 +96,10 @@ class SentimentController extends Controller
             'score' => $result['score'],
         ]);
     }
-
     public function history()
     {
-        // Fetch sentiment analysis history with pagination
-        $history = SentimentHistory::latest()->paginate(10);
+        $history = SentimentHistory::where('user_id', auth()->id())->latest()->paginate(10);
         return view('history', compact('history'));
     }
+    
 }
