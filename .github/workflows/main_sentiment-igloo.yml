@@ -39,17 +39,6 @@ jobs:
         with:
           name: php-app
           path: release.zip
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-      
-      - name: Install npm dependencies
-        run: npm install
-      
-      - name: Build assets using npm
-        run: npm run build
 
   deploy:
     runs-on: ubuntu-latest
@@ -74,4 +63,4 @@ jobs:
           app-name: 'sentiment-igloo'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E6EFB986734D49F88C1201E21EA1AF89 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B0431A1C26D643B29F78942622ADC283 }}
