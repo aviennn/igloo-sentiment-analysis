@@ -60,6 +60,11 @@ class SentimentAnalysisService
         'negativeCount' => $negativeCount,
         'score' => $score,
     ];
+<<<<<<< HEAD
+}
+
+=======
+>>>>>>> d01774f79536ddcee58a83a1cd057fe0abdfd6fa
 }
 
 }
