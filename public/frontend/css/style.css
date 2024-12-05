@@ -261,9 +261,6 @@ h6,
     margin-bottom: 6rem;
     padding: 16rem 0 0 0;
     background:
-        url(../img/bg-circle.png),
-        url(../img/bg-triangle.png),
-        url(../img/bg-bottom.png),
         linear-gradient(to bottom right, var(--primary), var(--secondary));
     background-position:
         left 0px top 0px,
@@ -332,7 +329,7 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: url(../img/screenshot-frame.png) center center no-repeat;
+   
     background-size: 253px 500px;
     z-index: 1;
 }
@@ -428,9 +425,6 @@ h6,
     margin-top: 6rem;
     padding-top: 9rem;
     background:
-        url(../img/bg-circle.png),
-        url(../img/bg-triangle.png),
-        url(../img/bg-top.png),
         linear-gradient(to bottom right, var(--primary), var(--secondary));
     background-position:
         left 0px bottom 0px,
