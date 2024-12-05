@@ -63,4 +63,4 @@ jobs:
           app-name: 'sentiment-igloo'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED4FB50286DD46FDAB4914952F8EA455 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E6EFB986734D49F88C1201E21EA1AF89 }}
