@@ -38,3 +38,7 @@ Route::middleware('auth')->group(function () {
 
 // Authentication Routes (Login, Register)
 require __DIR__.'/auth.php';
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

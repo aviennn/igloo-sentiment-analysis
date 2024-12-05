@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-    <title>Sentiment Analysis</title>
+    <title>IGLOO - Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -57,7 +57,7 @@
         }
     </style>
 </head>
-<body >
+<body class="antialiased bg-gray-100">
 
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -80,16 +80,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto py-0">
             <a href="#home" class="nav-item nav-link active">Dashboard</a>
-            <a href="#feature" class="nav-item nav-link">Feature</a>
-            <a href="#about" class="nav-item nav-link">About</a>
+            <a href="#how" class="nav-item nav-link">How It Works</a>
             <a href="#sentiment-analysis" class="nav-item nav-link">Analyzer</a>
-            <a href="#contact" class="nav-item nav-link">Contact</a>
         </div>
         <!-- Logout Button (only for authenticated users) -->
         @auth
         <form action="{{ route('logout') }}" method="POST" class="d-flex align-items-center ms-lg-3">
             @csrf
-            <button type="submit" class="btn bg-light text-dark btn-sm px-4">Logout</button>
+            <button type="submit" class="btn bg-white text-dark btn-sm px-4 fw-medium">Logout</button>
         </form>
         @endauth
     </div>
@@ -109,62 +107,6 @@
 
         </div>
         <!-- Navbar & Hero End -->
-
-        <!-- Features Start -->
-        <div class="container-xxl py-5" id="feature">
-            <div class="container py-5 px-lg-5">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="text-primary-gradient fw-medium">App Features</h5>
-                    <h1 class="mb-5">Awesome Features</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-item bg-light rounded p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4" style="width: 60px; height: 60px;">
-                                <i class="fa fa-eye text-white fs-4"></i>
-                            </div>
-                            <h5 class="mb-3">High Resolution</h5>
-                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="feature-item bg-light rounded p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4" style="width: 60px; height: 60px;">
-                                <i class="fa fa-layer-group text-white fs-4"></i>
-                            </div>
-                            <h5 class="mb-3">Retina Ready</h5>
-                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="feature-item bg-light rounded p-4">
-                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4" style="width: 60px; height: 60px;">
-                                <i class="fa fa-edit text-white fs-4"></i>
-                            </div>
-                            <h5 class="mb-3">Editable Data</h5>
-                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Features End -->
-<!-- About Start -->
-<div class="container-xxl py-5" id="about">
-    <div class="container py-5 px-lg-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="text-primary-gradient fw-medium">About Our Sentiment Analysis App</h5>
-                <h1 class="mb-4">Unlock Insights with Advanced Sentiment Analysis</h1>
-                <p class="mb-4">Our Sentiment Analysis App empowers you to effortlessly analyze the emotions behind any text. Whether you're evaluating customer feedback, social media conversations, or product reviews, our app provides the tools you need to gain deeper insights into underlying sentiments.</p>
-                <p class="mb-4">Our app delivers precise sentiment scores, categorizing text as positive, negative, or neutral. It's the perfect tool for businesses looking to improve customer experience, or for individuals seeking a deeper understanding of emotional tones in communication.</p>
-                <p class="mb-4">With intuitive, user-friendly features, you'll receive instant, data-driven insights that help you make smarter decisions and predict sentiment trends over time. Whether for real-time feedback or historical sentiment analysis, our app gives you the power to track and act on emotions effectively.</p>
-                <h5 class="mb-4">Start analyzing sentiment today and make informed decisions with ease!</h5>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- About End -->
 
         <!-- Process Start -->
 <div class="container-xxl py-5" id="how">
@@ -263,104 +205,8 @@
         </div>
         <!-- Sentiment Analysis End -->
 
-
-
-
-
-
-        <!-- Contact Start -->
-        <div class="container-xxl py-5" id="contact">
-            <div class="container py-5 px-lg-5">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="text-primary-gradient fw-medium">Contact Us</h5>
-                    <h1 class="mb-5">Get In Touch!</h1>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-9">
-                        <div class="wow fadeInUp" data-wow-delay="0.3s">
-                            <p class="text-center mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                            <label for="subject">Subject</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                            <label for="message">Message</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <button class="btn btn-primary-gradient rounded-pill py-3 px-5" type="submit">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contact End -->
-
-        
-
         <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <h4 class="text-white mb-4">Address</h4>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h4 class="text-white mb-4">Quick Link</h4>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h4 class="text-white mb-4">Popular Link</h4>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h4 class="text-white mb-4">Newsletter</h4>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary-gradient fs-4"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container px-lg-5">
                 <div class="copyright">
                     <div class="row">
