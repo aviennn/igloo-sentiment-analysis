@@ -253,7 +253,7 @@
         e.preventDefault(); // Prevent page reload
 
         let formData = new FormData(this);
-
+        let token = $('meta[name="csrf-token"]').attr('content');
         // Show a loading indicator (optional)
         $("#resultContainer").html('<div class="text-center">Loading...</div>');
 
@@ -263,6 +263,9 @@
             data: formData,
             processData: false,
             contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': token  // Include CSRF token in the header
+            },
             success: function (response) {
                 // Dynamically update the results with sentiment analysis details
                 $("#resultContainer").html(`
