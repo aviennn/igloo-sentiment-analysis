@@ -402,7 +402,7 @@
     <script src="{{url('frontend/js/main.js')}}"></script>
 
     <script>
-   $(document).ready(function () {
+  $(document).ready(function () {
     $("#sentimentForm").on("submit", function (e) {
         e.preventDefault(); // Prevent page reload
 
@@ -418,7 +418,7 @@
             processData: false,
             contentType: false,
             success: function (response) {
-                // Update the results dynamically
+                // Dynamically update the results with sentiment analysis details
                 $("#resultContainer").html(`
                     <div class="col-lg-9">
                         <div class="wow fadeInUp" data-wow-delay="0.5s">
@@ -438,6 +438,28 @@
                                 <p class="mt-3 p-3 rounded-lg bg-light shadow-sm" style="font-size: 1.1rem;">
                                     ${response.highlightedText}
                                 </p>
+                                
+                                <!-- Display Positive and Negative Words -->
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="text-success">Positive Words</h4>
+                                            <ul class="list-unstyled">
+                                                ${response.positiveWords.length > 0 ?
+                                                    response.positiveWords.map(word => `<li class="text-success">${word}</li>`).join('') :
+                                                    "<li>No positive words found</li>"}
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="text-danger">Negative Words</h4>
+                                            <ul class="list-unstyled">
+                                                ${response.negativeWords.length > 0 ?
+                                                    response.negativeWords.map(word => `<li class="text-danger">${word}</li>`).join('') :
+                                                    "<li>No negative words found</li>"}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -461,6 +483,7 @@
         });
     });
 });
+
 
         </script>
 </body>

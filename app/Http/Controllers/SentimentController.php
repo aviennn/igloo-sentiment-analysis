@@ -94,6 +94,8 @@ class SentimentController extends Controller
             'positiveCount' => $result['positiveCount'],
             'negativeCount' => $result['negativeCount'],
             'score' => $result['score'],
+            'positiveWords' => $result['positiveWords'],  
+            'negativeWords' => $result['negativeWords'], 
         ]);
     }
     public function history()
