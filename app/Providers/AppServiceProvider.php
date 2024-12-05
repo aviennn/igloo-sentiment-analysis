@@ -23,10 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.env') === 'production')
-        {
-            URL::forceScheeme('https');
+        if (config('app.env') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
         }
+        
 
         Storage::extend('azure', function ($app, $config) {
             $client = BlobRestProxy::createBlobService($config['connection_string']);
