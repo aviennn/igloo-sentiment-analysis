@@ -253,6 +253,11 @@
   $(document).ready(function () {
     $("#sentimentForm").on("submit", function (e) {
         e.preventDefault(); // Prevent page reload
+        $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
         let formData = new FormData(this);
         let token = $('meta[name="csrf-token"]').attr('content');
