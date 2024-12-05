@@ -67,15 +67,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
-      - name: 'Deploy to Azure Web App'
+     - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'sentiment-igloo'
           slot-name: 'Production'
           package: .
-<<<<<<< HEAD
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0281C360EDE648938339BF494F4416C3 }}
-=======
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_996086B718914ADEBC1EDE1441E356C1 }}
->>>>>>> ffbd053e397d51b7c9451616a643b59726af6c6a
